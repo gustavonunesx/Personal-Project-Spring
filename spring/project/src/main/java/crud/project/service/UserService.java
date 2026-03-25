@@ -3,7 +3,10 @@ package crud.project.service;
 import crud.project.model.User;
 import crud.project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,14 @@ public class UserService {
     //optional por ser OPCIONAL a busca por id (nao sendo obrigatorio colocar na url)
     public Optional<User> getById(Long id){
         return repository.findById(id);
+    }
+
+    //sem return (void)
+    public void delete(Long id){
+        if(!repository.existsById(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario nao encontrado");
+        }
+        repository.deleteById(id);
     }
 
 
