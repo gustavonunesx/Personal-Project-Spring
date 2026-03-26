@@ -16,7 +16,6 @@ public class UserController {
     private UserService service;
 
 
-
     //@requestbody é necessario para o spring "achar" Spring não mapeava JSON do corpo da requisição
     @PostMapping
     public User createUser(@RequestBody User user){
