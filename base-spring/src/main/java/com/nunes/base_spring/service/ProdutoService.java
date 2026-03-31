@@ -22,7 +22,7 @@ public class ProdutoService {
         PRODUTOS.add(ProdutoEntity.builder()
             .id(2)
             .nome("Mouse")
-            .preco( new BigDecimal(39.90))
+            .preco( new BigDecimal(39.00))
             .qtd(11)
             .build());
         PRODUTOS.add(ProdutoEntity.builder()
@@ -67,6 +67,10 @@ public class ProdutoService {
         produto.setPreco(produtoDTO.getPreco());
         produto.setQtd(produtoDTO.getQtd());
         return produto;
+    }
+
+    public void deleteProduct(Integer id){
+        PRODUTOS.removeIf(p -> p.getId().equals(id));
     }
 
 }
