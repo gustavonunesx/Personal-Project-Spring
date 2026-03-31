@@ -10,34 +10,32 @@ import com.nunes.base_spring.model.ProdutoEntity;
 @Service
 public class ProdutoService {
     
-    private List<ProdutoEntity> PRODUTOS = new ArrayList<>();
+    private static final List<ProdutoEntity> PRODUTOS = new ArrayList<>();
 
     static{
-         ProdutoEntity.builder()
+         PRODUTOS.add(ProdutoEntity.builder()
         .id(1)
         .nome("Notebook")
-        .preco( new BigDecimal(4.500))
+        .preco( new BigDecimal(4500))
         .qtd(10)
-        .build();
-        ProdutoEntity.builder()
+        .build());
+        PRODUTOS.add(ProdutoEntity.builder()
             .id(2)
             .nome("Mouse")
             .preco( new BigDecimal(39.90))
             .qtd(11)
-            .build();
-        ProdutoEntity.builder()
+            .build());
+        PRODUTOS.add(ProdutoEntity.builder()
             .id(3)
             .nome("iphone")
-            .preco( new BigDecimal(7.400))
+            .preco( new BigDecimal(7400))
             .qtd(10)
-            .build();
+            .build());
     }
 
     public List<ProdutoEntity> getAll(){
         return new ArrayList<>(PRODUTOS);
     }
-
-
 
     public ProdutoEntity create(ProdutoDTO produtoDTO){
 
