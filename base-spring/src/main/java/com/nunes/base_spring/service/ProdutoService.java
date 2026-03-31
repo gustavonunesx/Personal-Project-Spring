@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.nunes.base_spring.dto.ProdutoDTO;
+import com.nunes.base_spring.exeption.NotFoundException;
 import com.nunes.base_spring.model.ProdutoEntity;
 
 @Service
@@ -56,12 +57,12 @@ public class ProdutoService {
     }
 
 
-    public ProdutoEntity atualizarProduto(ProdutoDTO produtoDTO, Integer id){
+    public ProdutoEntity atualizarProduto(ProdutoDTO produtoDTO, Integer id) throws NotFoundException{
 
         ProdutoEntity produto = PRODUTOS.stream()
                 .filter(p -> p.getId().equals(id))
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("Produto nao encontrado"));
+                .orElseThrow(() -> new NotFoundException("Produto nao encontrado"));
 
         produto.setNome(produtoDTO.getNome());
         produto.setPreco(produtoDTO.getPreco());

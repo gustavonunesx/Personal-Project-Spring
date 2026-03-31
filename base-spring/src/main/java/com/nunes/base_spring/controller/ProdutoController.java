@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.nunes.base_spring.dto.ProdutoDTO;
+import com.nunes.base_spring.exeption.NotFoundException;
 
 @RestController
 @RequestMapping("/v1/produtos")
@@ -38,7 +39,7 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ProdutoEntity updateProduct(@PathVariable Integer id, @RequestBody ProdutoDTO produtoDTO){
+    public ProdutoEntity updateProduct(@PathVariable Integer id, @RequestBody ProdutoDTO produtoDTO) throws NotFoundException{
         return produtoService.atualizarProduto(produtoDTO,id);
     }
     
