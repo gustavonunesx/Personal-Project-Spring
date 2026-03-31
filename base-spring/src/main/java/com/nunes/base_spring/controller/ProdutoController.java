@@ -1,6 +1,7 @@
 package com.nunes.base_spring.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import com.nunes.base_spring.model.ProdutoEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.nunes.base_spring.dto.ProdutoDTO;
 
@@ -32,6 +34,11 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.CREATED)
     public ProdutoEntity create(@RequestBody ProdutoDTO produtoDTO){
         return produtoService.create(produtoDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ProdutoEntity updateProduct(@PathVariable Integer id, @RequestBody ProdutoDTO produtoDTO){
+        return produtoService.atualizarProduto(produtoDTO,id);
     }
     
 }

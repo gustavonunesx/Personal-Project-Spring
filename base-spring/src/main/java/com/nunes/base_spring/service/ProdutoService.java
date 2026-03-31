@@ -3,9 +3,7 @@ package com.nunes.base_spring.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.nunes.base_spring.dto.ProdutoDTO;
 import com.nunes.base_spring.model.ProdutoEntity;
 
@@ -57,6 +55,20 @@ public class ProdutoService {
 
         PRODUTOS.add(novoProduto);
         return novoProduto;
+    }
+
+
+    public ProdutoEntity atualizarProduto(ProdutoDTO produtoDTO, Integer id){
+
+        ProdutoEntity produto = PRODUTOS.stream()
+                .filter(p -> p.getId().equals(id))
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("Produto nao encontrado"));
+
+        produto.setNome(produtoDTO.getNome());
+        produto.setPreco(produtoDTO.getPreco());
+        produto.setQtd(produtoDTO.getQtd());
+        return produto;
     }
 
 }
